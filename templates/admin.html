@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AI Admin Panel</title>
+
+<style>
+
+body{
+    background:#111;
+    color:white;
+    font-family:sans-serif;
+    padding:20px;
+}
+
+.card{
+    background:#222;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:12px;
+}
+
+input,textarea,button{
+
+    width:100%;
+    margin-top:10px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    background:#00cc88;
+    color:white;
+    font-weight:bold;
+}
+
+textarea{
+    height:120px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>AI Admin Panel</h1>
+
+<div class="card">
+
+<h2>System Prompt</h2>
+
+<textarea id="prompt"></textarea>
+
+<button onclick="savePrompt()">
+Save Prompt
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Clear Memory</h2>
+
+<button onclick="clearMemory()">
+Clear Chat Memory
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Model Settings</h2>
+
+<input id="temp" placeholder="Temperature">
+
+<button onclick="saveSettings()">
+Save Settings
+</button>
+
+</div>
+
+<script>
+
+async function savePrompt(){
+
+    let prompt =
+        document.getElementById("prompt").value;
+
+    await fetch(
+        "/save_prompt?text=" +
+        encodeURIComponent(prompt)
+    );
+
+    alert("Saved");
+
+}
+
+async function clearMemory(){
+
+    await fetch("/clear_memory");
+
+    alert("Memory Cleared");
+
+}
+
+async function saveSettings(){
+
+    let temp =
+        document.getElementById("temp").value;
+
+    await fetch(
+        "/save_settings?temp=" + temp
+    );
+
+    alert("Settings Saved");
+
+}
+
+</script>
+
+</body>
+
+</html>
