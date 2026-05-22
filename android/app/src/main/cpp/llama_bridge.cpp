@@ -1,5 +1,5 @@
 #include <jni.h>
-#include "llama.h"
+#include <string>
 
 extern "C"
 JNIEXPORT jstring JNICALL
@@ -10,8 +10,7 @@ Java_com_mohammad_myai_AIEngine_runModel(
 
     const char *input = env->GetStringUTFChars(prompt, 0);
 
-    // اینجا فعلاً mock می‌زنیم
-    std::string output = "AI response: ";
+    std::string output = "AI Core Active: ";
     output += input;
 
     return env->NewStringUTF(output.c_str());

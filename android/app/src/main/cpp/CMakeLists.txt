@@ -8,12 +8,6 @@ add_library(
         llama_bridge.cpp
 )
 
-find_library(
-        log-lib
-        log
-)
+find_library(log-lib log)
 
-target_link_libraries(
-        llama
-        ${log-lib}
-)
+target_link_libraries(llama ${log-lib})
